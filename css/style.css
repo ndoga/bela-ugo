@@ -306,14 +306,16 @@ section { padding: 90px 0; }
 .logo--light { color: var(--paper); width: 150px; margin: 0 auto 10px; }
 
 /* ===== Cameriera ===== */
-.waitress {
-  --w: 104px;
-  position: fixed; left: 12px; bottom: 6px; z-index: 40; width: var(--w);
-  pointer-events: none;
-  transform: translateX(var(--x, 0px));
-  transition: transform .5s cubic-bezier(.3,.7,.3,1);
+/* corsia larga quanto la pagina, posizionata da js all'altezza del titolo da servire */
+.waitress-lane {
+  position: absolute; left: 0; right: 0; z-index: 40;
+  padding-top: 44px; /* spazio per il fumetto */
+  overflow: hidden; pointer-events: none;
+  visibility: hidden;
 }
-.waitress__svg { display: block; width: 100%; overflow: visible; transform: scaleX(var(--face, 1)); transition: transform .25s; }
+.waitress-lane.is-active { visibility: visible; }
+.waitress { --w: 120px; position: relative; width: var(--w); will-change: transform; }
+.waitress__svg { display: block; width: 100%; overflow: visible; }
 .waitress__shadow { width: 60%; height: 8px; margin: -8px auto 0; border-radius: 50%; background: rgba(0,0,0,.18); }
 .waitress__leg--l { transform-origin: 50px 150px; }
 .waitress__leg--r { transform-origin: 70px 150px; }
@@ -387,6 +389,6 @@ section { padding: 90px 0; }
   .chalkboard { border-width: 10px; padding: 36px 18px; }
   .hours__table th, .hours__table td { padding: 10px 12px; }
   .ribbon span { font-size: 1.3rem; }
-  .waitress { --w: 70px; }
+  .waitress { --w: 92px; }
   .waitress__bubble { font-size: 1rem; }
 }

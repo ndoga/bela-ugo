@@ -64,52 +64,80 @@ revealGroups.forEach((selector) =>
   })
 );
 
-// ----- Cameriera: attraversa lo schermo mentre scorri e "serve" i titoli -----
-const waitress = document.querySelector(".waitress");
-const tray = waitress.querySelector(".waitress__tray");
+// ----- Cameriera: entra da sinistra col titolo sul vassoio, lo serve al centro ed esce a destra -----
+const lane = document.querySelector(".waitress-lane");
+const waitress = lane.querySelector(".waitress");
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-let lastY = window.scrollY;
-let stopTimer;
+const SERVE_MS = 2400;
+const SMALL = 0.3; // dimensione del titolo mentre è sul vassoio
+const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-const moveWaitress = () => {
-  const max = document.documentElement.scrollHeight - window.innerHeight;
-  const progress = max > 0 ? window.scrollY / max : 0;
-  const travel = window.innerWidth - waitress.offsetWidth - 24;
-  waitress.style.setProperty("--x", `${progress * travel}px`);
-  if (window.scrollY !== lastY) waitress.style.setProperty("--face", window.scrollY > lastY ? 1 : -1);
-  lastY = window.scrollY;
+const serve = async (heading) => {
+  const box = heading.getBoundingClientRect();
+  // se nel frattempo il titolo è uscito dallo schermo lo mostriamo e basta
+  if (box.bottom < 0 || box.top > window.innerHeight) {
+    heading.classList.remove("to-serve");
+    return;
+  }
+  const range = document.createRange();
+  range.selectNodeContents(heading);
+  const text = range.getBoundingClientRect(); // ingombro del solo testo
+  const cx = text.left + text.width / 2;
+  const cy = text.top + text.height / 2;
+
+  // misure del vassoio dentro il disegno (viewBox 140x210, vassoio a x=100, y=48)
+  const w = waitress.offsetWidth;
+  const trayX = (w * 100) / 140;
+  const trayY = (w * 48) / 140;
+  const padTop = parseFloat(getComputedStyle(lane).paddingTop);
+  lane.style.top = `${window.scrollY + cy + (text.height * SMALL) / 2 - trayY - padTop}px`;
+
+  const startX = -w - 20;
+  const stopX = cx - trayX;
+  const endX = window.innerWidth + 20;
+  heading.style.transformOrigin = `${cx - box.left}px ${cy - box.top}px`;
+
+  lane.classList.add("is-active");
   waitress.classList.add("is-walking");
-  clearTimeout(stopTimer);
-  stopTimer = setTimeout(() => waitress.classList.remove("is-walking"), 180);
-};
-window.addEventListener("scroll", moveWaitress, { passive: true });
-window.addEventListener("resize", moveWaitress);
-moveWaitress();
-
-// i titoli partono dal vassoio e volano al loro posto, uno alla volta
-const serveQueue = [];
-let serving = false;
-const serveNext = () => {
-  const heading = serveQueue.shift();
-  if (!heading) { serving = false; return; }
-  serving = true;
-  waitress.classList.add("is-serving");
-  const from = tray.getBoundingClientRect();
-  const to = heading.getBoundingClientRect();
-  const dx = from.left - (to.left + to.width / 2);
-  const dy = from.top - (to.top + to.height / 2);
   heading.classList.remove("to-serve");
+
+  waitress.animate(
+    [
+      { transform: `translateX(${startX}px)`, easing: "cubic-bezier(.25,.6,.4,1)" },
+      { transform: `translateX(${stopX}px)`, offset: 0.4 },
+      { transform: `translateX(${stopX}px)`, offset: 0.62, easing: "cubic-bezier(.5,0,.8,.5)" },
+      { transform: `translateX(${endX}px)` },
+    ],
+    { duration: SERVE_MS, fill: "both" }
+  );
   heading.animate(
     [
-      { transform: `translate(${dx}px, ${dy}px) scale(.1) rotate(-12deg)`, opacity: 0 },
-      { transform: `translate(${dx}px, ${dy}px) scale(.18) rotate(-12deg)`, opacity: 1, offset: 0.15 },
-      { transform: "translateY(-14px) scale(1.06)", offset: 0.75 },
-      { transform: "none", opacity: 1 },
+      { transform: `translateX(${startX - stopX}px) scale(${SMALL})`, easing: "cubic-bezier(.25,.6,.4,1)" },
+      { transform: `translateX(0) scale(${SMALL})`, offset: 0.4, easing: "cubic-bezier(.3,.7,.3,1)" },
+      { transform: "translateY(-14px) scale(1.06)", offset: 0.56 },
+      { transform: "none", offset: 0.66 },
+      { transform: "none" },
     ],
-    { duration: 1000, easing: "cubic-bezier(.3,.7,.3,1)" }
+    { duration: SERVE_MS }
   );
-  setTimeout(() => waitress.classList.remove("is-serving"), 1100);
-  setTimeout(serveNext, 450);
+
+  await wait(SERVE_MS * 0.4);
+  waitress.classList.replace("is-walking", "is-serving");
+  await wait(SERVE_MS * 0.22);
+  waitress.classList.replace("is-serving", "is-walking");
+  await wait(SERVE_MS * 0.38);
+  waitress.classList.remove("is-walking");
+  lane.classList.remove("is-active");
+};
+
+// un titolo alla volta
+const serveQueue = [];
+let serving = false;
+const runQueue = async () => {
+  if (serving) return;
+  serving = true;
+  while (serveQueue.length) await serve(serveQueue.shift());
+  serving = false;
 };
 const serveObserver = new IntersectionObserver(
   (entries) =>
@@ -117,9 +145,9 @@ const serveObserver = new IntersectionObserver(
       if (!entry.isIntersecting) return;
       serveObserver.unobserve(entry.target);
       serveQueue.push(entry.target);
-      if (!serving) serveNext();
+      runQueue();
     }),
-  { threshold: 0.6 }
+  { threshold: 1, rootMargin: "0px 0px -15% 0px" }
 );
 if (!reduceMotion) {
   document.querySelectorAll("section:not(.hero) h2").forEach((h) => {
