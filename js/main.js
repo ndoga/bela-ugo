@@ -37,7 +37,7 @@ document.querySelectorAll(".nav__links a").forEach((a) =>
 // ----- Comparsa degli elementi durante lo scroll -----
 const revealGroups = [
   ".feature", ".about__image", ".about__text", ".chalkboard", ".review",
-  ".hours__grid > *", ".contacts__grid > *", ".booking__intro", "section > .container > h2",
+  ".hours__grid > *", ".contacts__grid > *", ".booking__intro", ".reviews__sub",
 ];
 const revealObserver = new IntersectionObserver(
   (entries) =>
@@ -63,6 +63,70 @@ revealGroups.forEach((selector) =>
     revealObserver.observe(el);
   })
 );
+
+// ----- Cameriera: attraversa lo schermo mentre scorri e "serve" i titoli -----
+const waitress = document.querySelector(".waitress");
+const tray = waitress.querySelector(".waitress__tray");
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+let lastY = window.scrollY;
+let stopTimer;
+
+const moveWaitress = () => {
+  const max = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = max > 0 ? window.scrollY / max : 0;
+  const travel = window.innerWidth - waitress.offsetWidth - 24;
+  waitress.style.setProperty("--x", `${progress * travel}px`);
+  if (window.scrollY !== lastY) waitress.style.setProperty("--face", window.scrollY > lastY ? 1 : -1);
+  lastY = window.scrollY;
+  waitress.classList.add("is-walking");
+  clearTimeout(stopTimer);
+  stopTimer = setTimeout(() => waitress.classList.remove("is-walking"), 180);
+};
+window.addEventListener("scroll", moveWaitress, { passive: true });
+window.addEventListener("resize", moveWaitress);
+moveWaitress();
+
+// i titoli partono dal vassoio e volano al loro posto, uno alla volta
+const serveQueue = [];
+let serving = false;
+const serveNext = () => {
+  const heading = serveQueue.shift();
+  if (!heading) { serving = false; return; }
+  serving = true;
+  waitress.classList.add("is-serving");
+  const from = tray.getBoundingClientRect();
+  const to = heading.getBoundingClientRect();
+  const dx = from.left - (to.left + to.width / 2);
+  const dy = from.top - (to.top + to.height / 2);
+  heading.classList.remove("to-serve");
+  heading.animate(
+    [
+      { transform: `translate(${dx}px, ${dy}px) scale(.1) rotate(-12deg)`, opacity: 0 },
+      { transform: `translate(${dx}px, ${dy}px) scale(.18) rotate(-12deg)`, opacity: 1, offset: 0.15 },
+      { transform: "translateY(-14px) scale(1.06)", offset: 0.75 },
+      { transform: "none", opacity: 1 },
+    ],
+    { duration: 1000, easing: "cubic-bezier(.3,.7,.3,1)" }
+  );
+  setTimeout(() => waitress.classList.remove("is-serving"), 1100);
+  setTimeout(serveNext, 450);
+};
+const serveObserver = new IntersectionObserver(
+  (entries) =>
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      serveObserver.unobserve(entry.target);
+      serveQueue.push(entry.target);
+      if (!serving) serveNext();
+    }),
+  { threshold: 0.6 }
+);
+if (!reduceMotion) {
+  document.querySelectorAll("section:not(.hero) h2").forEach((h) => {
+    h.classList.add("to-serve");
+    serveObserver.observe(h);
+  });
+}
 
 // ----- Tab del menù -----
 const tabs = document.querySelectorAll(".tab");

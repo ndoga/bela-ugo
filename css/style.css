@@ -305,6 +305,38 @@ section { padding: 90px 0; }
 .footer__legal { font-size: .82rem; opacity: .7; }
 .logo--light { color: var(--paper); width: 150px; margin: 0 auto 10px; }
 
+/* ===== Cameriera ===== */
+.waitress {
+  --w: 104px;
+  position: fixed; left: 12px; bottom: 6px; z-index: 40; width: var(--w);
+  pointer-events: none;
+  transform: translateX(var(--x, 0px));
+  transition: transform .5s cubic-bezier(.3,.7,.3,1);
+}
+.waitress__svg { display: block; width: 100%; overflow: visible; transform: scaleX(var(--face, 1)); transition: transform .25s; }
+.waitress__shadow { width: 60%; height: 8px; margin: -8px auto 0; border-radius: 50%; background: rgba(0,0,0,.18); }
+.waitress__leg--l { transform-origin: 50px 150px; }
+.waitress__leg--r { transform-origin: 70px 150px; }
+.waitress__arm { transform-origin: 80px 88px; transition: transform .3s; }
+.waitress.is-walking .waitress__svg { animation: bob .36s ease-in-out infinite alternate; }
+.waitress.is-walking .waitress__leg--l { animation: step .36s ease-in-out infinite alternate; }
+.waitress.is-walking .waitress__leg--r { animation: step .36s ease-in-out infinite alternate-reverse; }
+.waitress.is-serving .waitress__arm { transform: rotate(-22deg) translate(4px, -6px); }
+.waitress.is-serving .waitress__svg { animation: hop .5s ease; }
+.waitress__bubble {
+  position: absolute; bottom: 100%; left: 50%; translate: -50% 0;
+  background: #fff; color: var(--wall); font: 700 1.25rem var(--script); white-space: nowrap;
+  padding: 2px 12px; border-radius: 14px; box-shadow: var(--shadow);
+  opacity: 0; transform: scale(.6); transition: opacity .2s, transform .2s;
+}
+.waitress__bubble::after { content: ""; position: absolute; top: 100%; left: 50%; margin-left: -6px; border: 6px solid transparent; border-top-color: #fff; }
+.waitress.is-serving .waitress__bubble { opacity: 1; transform: none; }
+.to-serve { opacity: 0; }
+
+@keyframes bob { from { translate: 0 0; } to { translate: 0 -4px; } }
+@keyframes step { from { transform: rotate(16deg); } to { transform: rotate(-16deg); } }
+@keyframes hop { 40% { translate: 0 -10px; } }
+
 /* ===== Animazioni ===== */
 @keyframes stamp-in { from { opacity: 0; transform: scale(1.6) rotate(-12deg); } to { opacity: 1; transform: none; } }
 @keyframes rise { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
@@ -321,7 +353,7 @@ section { padding: 90px 0; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
-  .reveal { opacity: 1; transform: none; }
+  .reveal, .to-serve { opacity: 1; transform: none; }
   html { scroll-behavior: auto; }
 }
 
@@ -355,4 +387,6 @@ section { padding: 90px 0; }
   .chalkboard { border-width: 10px; padding: 36px 18px; }
   .hours__table th, .hours__table td { padding: 10px 12px; }
   .ribbon span { font-size: 1.3rem; }
+  .waitress { --w: 70px; }
+  .waitress__bubble { font-size: 1rem; }
 }
