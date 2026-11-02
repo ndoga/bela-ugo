@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bèla Ugo · Bar Ristorante Pizzeria · Riozzo (Cerro al Lambro)</title>
+  <meta name="description" content="Bèla Ugo a Riozzo di Cerro al Lambro: colazioni dalle 6:30, menù del mezzogiorno, pizza alla pala con lievito madre, asporto e consegna. Tel. 02 983 3377.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- ===== NAVIGAZIONE ===== -->
+  <header class="nav" id="top">
+    <div class="container nav__inner">
+      <a href="#top" class="logo">Bèla Ugo</a>
+      <button class="nav__toggle" aria-label="Apri menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+      <nav class="nav__links">
+        <a href="#chi-siamo">Chi siamo</a>
+        <a href="#menu">Menù</a>
+        <a href="#orari">Orari</a>
+        <a href="#contatti">Dove siamo</a>
+        <a href="#prenota" class="btn btn--small">Prenota</a>
+      </nav>
+    </div>
+  </header>
+  <!-- ===== HERO: parete rossa e zoccolo in pietra, come in sala ===== -->
+  <section class="hero">
+    <div class="container hero__content">
+      <div class="stamp" aria-hidden="true">
+        <span class="stamp__top">Bar · Ristorante</span>
+        <span class="stamp__name">Bèla Ugo</span>
+        <span class="stamp__bottom">Pizzeria · Riozzo</span>
+      </div>
+      <h1>Dal caffè del mattino<br>alla pizza della sera</h1>
+      <p class="hero__lead">Cucina di casa a mezzogiorno, pizza alla pala con lievito madre la sera, e un bancone aperto dalle 6:30.</p>
+      <div class="hero__actions">
+        <a href="tel:+39029833377" class="btn">Chiama 02 983 3377</a>
+        <a href="#menu" class="btn btn--ghost">Guarda il menù</a>
+      </div>
+    </div>
+    <div class="stone" aria-hidden="true"></div>
+  </section>
+
+  <!-- ===== FASCIA DI PAROLE (come la tovaglietta di carta) ===== -->
+  <div class="ribbon" aria-hidden="true">
+    <div class="ribbon__track">
+      <span>Pizza</span><span class="o">Margherita</span><span>Pasta</span><span class="i">Pomodoro</span><span>Spaghetti</span><span class="o">Lievito madre</span><span>Tortelli</span><span class="i">Basilico</span><span>Polpette</span><span class="o">Mozzarella</span><span>Fritto misto</span><span class="i">Tiramisù</span>
+      <span>Pizza</span><span class="o">Margherita</span><span>Pasta</span><span class="i">Pomodoro</span><span>Spaghetti</span><span class="o">Lievito madre</span><span>Tortelli</span><span class="i">Basilico</span><span>Polpette</span><span class="o">Mozzarella</span><span>Fritto misto</span><span class="i">Tiramisù</span>
+    </div>
+  </div>
+
+  <!-- ===== I QUATTRO MONDI ===== -->
+  <section class="features">
+    <div class="container features__grid">
+      <article class="feature">
+        <svg class="feature__icon" viewBox="0 0 48 48" aria-hidden="true"><path d="M8 18h26v10a12 12 0 0 1-12 12h-2A12 12 0 0 1 8 28z"/><path d="M34 21h3a5 5 0 0 1 0 10h-3"/><path class="steam" d="M16 6c-2 3 2 5 0 8"/><path class="steam steam--2" d="M24 6c-2 3 2 5 0 8"/></svg>
+        <h3>Bar</h3>
+        <p>Colazioni dalle 6:30, caffè, aperitivi e due chiacchiere al banco.</p>
+      </article>
+      <article class="feature">
+        <svg class="feature__icon" viewBox="0 0 48 48" aria-hidden="true"><circle cx="24" cy="26" r="15"/><circle cx="24" cy="26" r="9"/><path d="M6 6v12M10 6v12M6 12h4M8 18v24M42 6c-4 4-4 12 0 14v22"/></svg>
+        <h3>Mezzogiorno</h3>
+        <p>Menù del giorno con piatti di casa che cambiano ogni giorno.</p>
+      </article>
+      <article class="feature">
+        <svg class="feature__icon" viewBox="0 0 48 48" aria-hidden="true"><path d="M24 42 6 10a34 34 0 0 1 36 0z"/><path d="M8.5 14.5a30 30 0 0 1 31 0"/><circle cx="20" cy="20" r="2.5"/><circle cx="28" cy="24" r="2.5"/><circle cx="23" cy="31" r="2.5"/></svg>
+        <h3>Pizzeria</h3>
+        <p>Pizza alla pala e al tagliere, impasto con lievito madre.</p>
+      </article>
+      <article class="feature">
+        <svg class="feature__icon" viewBox="0 0 48 48" aria-hidden="true"><circle cx="12" cy="36" r="5"/><circle cx="37" cy="36" r="5"/><path d="M17 36h15l4-12h-9M6 22h14v8H8M30 14h5l5 22"/></svg>
+        <h3>Asporto e consegna</h3>
+        <p>Chiamaci e porti a casa la pizza, oppure te la portiamo noi.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===== CHI SIAMO ===== -->
+  <section class="about" id="chi-siamo">
+    <div class="container about__grid">
+      <figure class="about__image">
+        <img src="img/interno.png" alt="La sala del Bèla Ugo, con la parete rossa, il muro in pietra e le panche in legno" loading="lazy">
+        <figcaption>La nostra sala</figcaption>
+      </figure>
+      <div class="about__text">
+        <p class="section-kicker">Chi siamo</p>
+        <h2>Una famiglia, una cucina, un paese</h2>
+        <p>Il Bèla Ugo è il punto di ritrovo di Riozzo: si entra per il caffè del mattino, si torna a mezzogiorno per il menù del giorno e la sera per una pizza con gli amici.</p>
+        <p>In cucina c'è Luca con la famiglia, in sala Cinzia. Un ambiente informale e un po' retrò, dove ci si sente a casa: piatti della tradizione come i tortelli di magro, il riso al forno, la lingua e le polpette, e la nostra pizza alla pala con lievito madre.</p>
+        <ul class="about__facts">
+          <li>Lievito madre</li>
+          <li>Tavoli all'aperto</li>
+          <li>Parcheggio gratuito</li>
+          <li>Adatto ai bambini</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MENÙ (lavagna) ===== -->
+  <!-- I piatti sono quelli citati online dai clienti: completare con il menù reale e aggiungere i prezzi
+       con <span class="dish__price">€ 0,00</span> dentro a .dish__head -->
+  <section class="menu" id="menu">
+    <div class="container">
+      <div class="chalkboard">
+        <p class="section-kicker center">Oggi in cucina</p>
+        <h2 class="center">Il nostro menù</h2>
+
+        <div class="tabs" role="tablist">
+          <button class="tab is-active" role="tab" data-tab="pizze">Pizzeria</button>
+          <button class="tab" role="tab" data-tab="cucina">Cucina</button>
+          <button class="tab" role="tab" data-tab="pranzo">Mezzogiorno</button>
+          <button class="tab" role="tab" data-tab="bar">Bar</button>
+        </div>
+
+        <!-- Pizzeria -->
+        <div class="menu__panel is-active" id="pizze" role="tabpanel">
+          <div class="menu__list">
+            <div class="dish"><div class="dish__head"><h4>Pizza alla pala <em class="tag">specialità</em></h4></div><p>Impasto con lievito madre, steso a mano e cotto sulla pala. Da dividere in compagnia.</p></div>
+            <div class="dish"><div class="dish__head"><h4>Pizza al tagliere <em class="tag">specialità</em></h4></div><p>Servita al centro del tavolo sul tagliere, perfetta per le tavolate.</p></div>
+            <div class="dish"><div class="dish__head"><h4>Focaccia</h4></div><p>La stessa base della pizza alla pala, ottima con antipasti e secondi.</p></div>
+            <div class="dish"><div class="dish__head"><h4>Le classiche</h4></div><p>Margherita, marinara, diavola, capricciosa, quattro formaggi e tante altre.</p></div>
+          </div>
+          <p class="menu__note">Tutte le pizze anche da asporto e con consegna a domicilio: chiama lo 02 983 3377.</p>
+        </div>
+
+        <!-- Cucina -->
+        <div class="menu__panel" id="cucina" role="tabpanel">
+          <h3 class="menu__group">Primi</h3>
+          <div class="menu__list">
+            <div class="dish"><div class="dish__head"><h4>Tortelli di magro</h4></div><p>Ricotta e spinaci, burro e salvia</p></div>
+            <div class="dish"><div class="dish__head"><h4>Riso al forno</h4></div><p>Gratinato, come una volta</p></div>
+          </div>
+          <h3 class="menu__group">Secondi</h3>
+          <div class="menu__list">
+            <div class="dish"><div class="dish__head"><h4>Lingua</h4></div><p>Uno dei piatti più amati dai nostri clienti</p></div>
+            <div class="dish"><div class="dish__head"><h4>Polpette</h4></div><p>Fatte in casa</p></div>
+            <div class="dish"><div class="dish__head"><h4>Polipo con patate</h4></div></div>
+            <div class="dish"><div class="dish__head"><h4>Fritto misto</h4></div><p>Il più richiesto</p></div>
+          </div>
+          <h3 class="menu__group">Dolci</h3>
+          <div class="menu__list">
+            <div class="dish"><div class="dish__head"><h4>Tiramisù</h4></div></div>
+            <div class="dish"><div class="dish__head"><h4>Cheesecake</h4></div></div>
+          </div>
+        </div>
+
+        <!-- Mezzogiorno -->
+        <div class="menu__panel" id="pranzo" role="tabpanel">
+          <div class="lunch">
+            <div class="lunch__card">
+              <h3>Menù del giorno</h3>
+              <p>Primi, secondi e contorni che cambiano ogni giorno</p>
+            </div>
+            <div class="lunch__card">
+              <h3>Pranzo di lavoro</h3>
+              <p>Veloce, abbondante e con prodotti di qualità</p>
+            </div>
+            <div class="lunch__card">
+              <h3>Pizza a pranzo</h3>
+              <p>La nostra pizza anche a mezzogiorno</p>
+            </div>
+          </div>
+          <p class="menu__note">Dal lunedì al venerdì a mezzogiorno. Il menù del giorno lo trovi sulla nostra <a href="https://www.facebook.com/100057233088208" target="_blank" rel="noopener">pagina Facebook</a>.</p>
+        </div>
+
+        <!-- Bar -->
+        <div class="menu__panel" id="bar" role="tabpanel">
+          <div class="menu__list">
+            <div class="dish"><div class="dish__head"><h4>Colazione</h4></div><p>Caffè, cappuccino e brioche dalle 6:30 (dalle 7:00 nel weekend)</p></div>
+            <div class="dish"><div class="dish__head"><h4>Gelato e dolci</h4></div><p>Per una pausa golosa</p></div>
+            <div class="dish"><div class="dish__head"><h4>Aperitivo</h4></div><p>Vino, birra, cocktail e stuzzichini</p></div>
+            <div class="dish"><div class="dish__head"><h4>Vini e birre</h4></div><p>Da accompagnare a pizza e cucina</p></div>
+          </div>
+        </div>
+
+        <p class="menu__allergens">Per allergeni e intolleranze chiedete pure al personale.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== DICONO DI NOI ===== -->
+  <section class="reviews">
+    <div class="container">
+      <p class="section-kicker center">Dicono di noi</p>
+      <h2 class="center">4,2 su Google</h2>
+      <p class="reviews__sub center">Oltre 470 recensioni dei nostri clienti</p>
+      <div class="reviews__grid">
+        <div class="review"><span class="review__stars">★★★★★</span><h4>Pizza con lievito madre</h4><p>Il nostro impasto è la cosa più citata da chi passa a trovarci.</p></div>
+        <div class="review"><span class="review__stars">★★★★★</span><h4>Come a casa</h4><p>Tanti clienti vengono a pranzo ogni giorno per il menù del mezzogiorno.</p></div>
+        <div class="review"><span class="review__stars">★★★★★</span><h4>Qualità e prezzo giusto</h4><p>Materie prime di qualità, servizio veloce e cortese.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ORARI ===== -->
+  <section class="hours" id="orari">
+    <div class="container hours__grid">
+      <div>
+        <p class="section-kicker">Quando trovarci</p>
+        <h2>Orari di apertura</h2>
+        <p>Aperti tutti i giorni. Il venerdì, il sabato e la domenica sera è consigliato prenotare.</p>
+        <p class="hours__status" id="open-status"></p>
+      </div>
+      <table class="hours__table">
+        <tbody>
+          <tr data-day="1"><th>Lunedì</th><td>6:30 – 14:00 · 16:00 – 19:30</td></tr>
+          <tr data-day="2"><th>Martedì</th><td>6:30 – 14:00 · 16:00 – 19:30</td></tr>
+          <tr data-day="3"><th>Mercoledì</th><td>6:30 – 14:00 · 16:00 – 19:30</td></tr>
+          <tr data-day="4"><th>Giovedì</th><td>6:30 – 14:00 · 16:00 – 22:00</td></tr>
+          <tr data-day="5"><th>Venerdì</th><td>6:30 – 14:00 · 16:00 – 23:00</td></tr>
+          <tr data-day="6"><th>Sabato</th><td>7:00 – 12:30 · 16:00 – 24:00</td></tr>
+          <tr data-day="0"><th>Domenica</th><td>7:00 – 12:30 · 16:00 – 24:00</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ===== PRENOTA ===== -->
+  <div class="stone" aria-hidden="true"></div>
+  <section class="booking" id="prenota">
+    <div class="container booking__inner">
+      <div class="booking__intro">
+        <p class="section-kicker light">Ti aspettiamo</p>
+        <h2>Prenota il tuo tavolo</h2>
+        <p>Per prenotare un tavolo, per le tavolate e le feste di compleanno, o per ordinare la pizza da asporto o a domicilio, chiamaci.</p>
+        <a href="tel:+39029833377" class="btn btn--light">📞 02 983 3377</a>
+      </div>
+      <!-- Il modulo compare solo se in js/main.js è impostato un numero WhatsApp (WHATSAPP_NUMBER) -->
+      <form class="booking__form" id="booking-form" hidden>
+        <p class="booking__form-title">Oppure scrivici su WhatsApp</p>
+        <div class="field">
+          <label for="b-name">Nome</label>
+          <input id="b-name" name="name" type="text" required autocomplete="name">
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="b-date">Data</label>
+            <input id="b-date" name="date" type="date" required>
+          </div>
+          <div class="field">
+            <label for="b-time">Ora</label>
+            <select id="b-time" name="time" required>
+              <option value="12:00">12:00</option><option value="12:30">12:30</option>
+              <option value="13:00">13:00</option><option value="19:30">19:30</option>
+              <option value="20:00" selected>20:00</option><option value="20:30">20:30</option>
+              <option value="21:00">21:00</option><option value="21:30">21:30</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="b-people">Persone</label>
+            <input id="b-people" name="people" type="number" min="1" max="80" value="2" required>
+          </div>
+        </div>
+        <div class="field">
+          <label for="b-notes">Note <small>(facoltative)</small></label>
+          <textarea id="b-notes" name="notes" rows="3" placeholder="Allergie, seggiolone, compleanno…"></textarea>
+        </div>
+        <button type="submit" class="btn btn--full">Invia richiesta su WhatsApp</button>
+      </form>
+    </div>
+  </section>
+  <div class="stone" aria-hidden="true"></div>
+
+  <!-- ===== CONTATTI ===== -->
+  <section class="contacts" id="contatti">
+    <div class="container contacts__grid">
+      <div>
+        <p class="section-kicker">Dove siamo</p>
+        <h2>Vieni a trovarci</h2>
+        <ul class="contacts__list">
+          <li><strong>Indirizzo</strong>Via Circonvallazione 13<br>20070 Riozzo di Cerro al Lambro (MI)</li>
+          <li><strong>Telefono</strong><a href="tel:+39029833377">02 983 3377</a></li>
+          <li><strong>Parcheggio</strong>Ampio parcheggio gratuito</li>
+          <li><strong>Pagamenti</strong>Contanti, carte e pagamenti contactless</li>
+          <li><strong>Servizi</strong>Asporto, consegna a domicilio, rivendita tabacchi</li>
+        </ul>
+        <div class="social">
+          <a href="https://www.facebook.com/100057233088208" target="_blank" rel="noopener">Seguici su Facebook</a>
+          <a href="https://www.google.com/maps/dir/?api=1&destination=45.34639,9.32446" target="_blank" rel="noopener">Indicazioni stradali</a>
+        </div>
+      </div>
+      <div class="map">
+        <iframe title="Mappa: Bèla Ugo, Via Circonvallazione 13, Riozzo" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=Via+Circonvallazione+13,+Riozzo,+Cerro+al+Lambro&output=embed"></iframe>
+      </div>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container footer__inner">
+      <a href="#top" class="logo logo--light">Bèla Ugo</a>
+      <p>Bar · Ristorante · Pizzeria</p>
+      <p>Via Circonvallazione 13, Riozzo di Cerro al Lambro (MI) · <a href="tel:+39029833377">02 983 3377</a></p>
+      <!-- Aggiungere la Partita IVA (obbligatoria per legge sui siti aziendali) -->
+      <p class="footer__legal">© <span id="year"></span> Bèla Ugo · P.IVA 00000000000</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
